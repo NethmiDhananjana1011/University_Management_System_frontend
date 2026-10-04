@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import AdminDashboard from './AdminDashboard';
 import LecturerDashboard from './LecturerDashboard';
 import StudentDashboard from './StudentDashboard';
+import AcademicResults from './AcademicResults';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -20,6 +21,7 @@ export default function App() {
       <Route path="/admin" element={<AdminDashboard />} />
       <Route path="/lecturer" element={<LecturerDashboard />} />
       <Route path="/student" element={<StudentDashboard />} />
+      <Route path="/student/results" element={<AcademicResults />} />
     </Routes>
   );
 }
