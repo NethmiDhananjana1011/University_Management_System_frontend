@@ -1,16 +1,11 @@
 import React from 'react';
-// Importing required icons from lucide-react
 import { Search, Bell, Grid, Users, BookOpen, BarChart2, Settings, User } from 'lucide-react';
 
 export default function AdminDashboard() {
   return (
-    // Main layout container (Full screen height)
     <div className="flex h-screen bg-[#f4f7fe] font-sans">
-      
-      {/* Sidebar Navigation */}
+      {/* Sidebar */}
       <div className="w-64 bg-white border-r border-gray-200 flex flex-col shadow-sm z-10">
-        
-        {/* University Logo and Branding */}
         <div className="p-6 flex items-center gap-3">
           <div className="bg-[#1e3a8a] text-white p-2 rounded-lg font-bold text-xl flex items-center justify-center w-10 h-10">
             N
@@ -20,9 +15,7 @@ export default function AdminDashboard() {
           </div>
         </div>
         
-        {/* Navigation Menu Links */}
         <nav className="flex-1 px-4 space-y-2 mt-4 text-sm font-medium">
-          {/* Active state for Dashboard */}
           <a href="#" className="flex items-center gap-3 px-4 py-3 bg-blue-50 text-[#1e5baf] rounded-lg">
             <Grid size={18} /> Dashboard
           </a>
@@ -41,13 +34,10 @@ export default function AdminDashboard() {
         </nav>
       </div>
 
-      {/* Main Content Area */}
+      {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        
-        {/* Top Header */}
+        {/* Header */}
         <header className="bg-white border-b border-gray-200 h-20 flex items-center justify-between px-8 shadow-sm z-0">
-          
-          {/* Search Bar */}
           <div className="relative w-96">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
             <input 
@@ -56,18 +46,13 @@ export default function AdminDashboard() {
               className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none text-sm" 
             />
           </div>
-
-          {/* Top Right Actions (Notifications & User Profile) */}
           <div className="flex items-center gap-6">
-            {/* Notification Bell with Badge */}
             <button className="relative text-gray-400 hover:text-blue-600 transition-colors">
               <Bell size={22} />
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
                 1
               </span>
             </button>
-            
-            {/* User Profile Details */}
             <div className="flex items-center gap-3 border-l border-gray-200 pl-6">
               <div className="w-10 h-10 bg-[#e0e7ff] rounded-full flex items-center justify-center text-[#1e5baf] font-bold">
                 <User size={18} />
@@ -80,14 +65,12 @@ export default function AdminDashboard() {
           </div>
         </header>
 
-        {/* Scrollable Dashboard Content */}
+        {/* Dashboard Content */}
         <main className="flex-1 overflow-y-auto p-8">
           <h1 className="text-2xl font-bold text-gray-800 mb-6">Dashboard</h1>
           
-          {/* Top Statistics Cards (Grid Layout) */}
+          {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            
-            {/* Total Students Card */}
             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-blue-500"></div>
               <div className="flex justify-between items-center">
@@ -101,7 +84,6 @@ export default function AdminDashboard() {
               </div>
             </div>
             
-            {/* Active Courses Card */}
             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
               <div className="flex justify-between items-center">
                 <div>
@@ -114,7 +96,6 @@ export default function AdminDashboard() {
               </div>
             </div>
             
-            {/* Faculty Members Card */}
             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
               <div className="flex justify-between items-center">
                 <div>
@@ -128,19 +109,19 @@ export default function AdminDashboard() {
             </div>
           </div>
 
-          {/* Lower Section (Charts and Notices) */}
+          {/* Lower Section Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            
-            {/* Chart Area (Spans 2 columns on large screens) */}
+            {/* Chart Area Placeholder */}
             <div className="lg:col-span-2 bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
               <h2 className="text-lg font-semibold text-gray-800 mb-6">Attendance Trends</h2>
               <div className="h-64 flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-lg text-gray-400 bg-gray-50">
                 <BarChart2 size={40} className="mb-2 text-gray-300" />
                 <p className="text-sm">Chart will be rendered here</p>
+                <p className="text-xs mt-1">(We can add Recharts library later)</p>
               </div>
             </div>
             
-            {/* Recent Notices List */}
+            {/* Recent Notices */}
             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
               <h2 className="text-lg font-semibold text-gray-800 mb-6">Recent Notices</h2>
               <div className="space-y-5">
@@ -158,7 +139,6 @@ export default function AdminDashboard() {
                 </div>
               </div>
             </div>
-            
           </div>
         </main>
       </div>
