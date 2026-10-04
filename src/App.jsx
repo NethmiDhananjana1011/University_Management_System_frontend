@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import AdminDashboard from './AdminDashboard';
 import LecturerDashboard from './LecturerDashboard';
+import StudentDashboard from './StudentDashboard';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -18,6 +19,7 @@ export default function App() {
       <Route path="/" element={<LoginPage />} />
       <Route path="/admin" element={<AdminDashboard />} />
       <Route path="/lecturer" element={<LecturerDashboard />} />
+      <Route path="/student" element={<StudentDashboard />} />
     </Routes>
   );
 }
