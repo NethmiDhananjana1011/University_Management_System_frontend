@@ -4,18 +4,19 @@ import { ChevronRight, Mail, Phone, MapPin, LogOut, User, ChevronLeft } from 'lu
 import seuslLogo from './assets/seusl-logo.png';
 import campusBg from './assets/campusbg.jpg';
 
-// Aapke folder ke exact file names ke sath imports
-import appliedImg from './assets/appliedscience.jpg';
-import artsImg from './assets/artsculture.jpg';
-import islamicImg from './assets/islamicarabic.jpg';
-import managementImg from './assets/managementcommerce.jpg';
-import engineeringImg from './assets/engineering .jpg';
-import techImg from './assets/technology.jpg';
+import appliedImg from "./assets/appliedscience.jpg";
+import artsImg from "./assets/artsculture.jpg";
+import islamicImg from "./assets/islamicarabic.jpg";
+import managementImg from "./assets/managementcommerce.jpg";
+import engineeringImg from "./assets/engineering .jpg"; 
+import techImg from "./assets/technology.jpg";
 
 export default function MainDashboard() {
   const navigate = useNavigate();
   
   const [currentSlide, setCurrentSlide] = useState(0);
+  
+  // අන්තර්ජාල ලින්ක් වෙනුවට ඔයාගේ Faculty පින්තූරම Slideshow එකට දැමීම
   const slides = [
     { 
       title: "Welcome to South Eastern University of Sri Lanka", 
@@ -23,24 +24,34 @@ export default function MainDashboard() {
       bgImage: campusBg 
     },
     { 
-      title: "Excellence in Academic Faculties", 
-      subtitle: "Offering diverse programs across 6 major faculties for undergraduate success.",
-      bgImage: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop" 
+      title: "Faculty of Applied Sciences", 
+      subtitle: "Advancing knowledge in Biological, Mathematical, Chemical, and Physical Sciences.",
+      bgImage: appliedImg 
     },
     { 
-      title: "Advanced Research & Innovation", 
-      subtitle: "Fostering cutting-edge research, technology, and community development.",
-      bgImage: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop" 
+      title: "Faculty of Management & Commerce", 
+      subtitle: "Shaping future business leaders with excellence in Management, Finance and Marketing.",
+      bgImage: managementImg 
     },
     { 
-      title: "Vibrant Student Community", 
-      subtitle: "A dynamic environment connecting students from all parts of the island.",
-      bgImage: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&auto=format&fit=crop" 
+      title: "Faculty of Technology", 
+      subtitle: "Innovating the future with Bio-systems and Information & Communication Technology.",
+      bgImage: techImg 
     },
     { 
-      title: "Modern Facilities & Digital VLE", 
-      subtitle: "Seamless online access to course materials, lecture notes, and academic portals.",
-      bgImage: "https://images.unsplash.com/photo-14982436915f1-b481c920e322?q=80&w=1200&auto=format&fit=crop" 
+      title: "Faculty of Engineering", 
+      subtitle: "Engineering solutions for tomorrow in Civil, Mechanical, Electrical and Computer Science.",
+      bgImage: engineeringImg 
+    },
+    { 
+      title: "Faculty of Arts & Culture", 
+      subtitle: "Exploring Social Sciences, Languages, Geography, and Humanities.",
+      bgImage: artsImg 
+    },
+    { 
+      title: "Faculty of Islamic Studies & Arabic Language", 
+      subtitle: "A unique center for Arabic Language and Islamic jurisprudence.",
+      bgImage: islamicImg 
     }
   ];
 
@@ -76,7 +87,6 @@ export default function MainDashboard() {
   return (
     <div className="min-h-screen bg-gray-50 font-sans flex flex-col justify-between">
       
-      {/* Top Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           
@@ -112,7 +122,6 @@ export default function MainDashboard() {
         </div>
       </header>
 
-      {/* Hero Section with Slideshow */}
       <div className="relative h-[480px] bg-slate-900 flex items-center justify-center overflow-hidden text-center">
         {slides.map((slide, index) => (
           <img 
@@ -160,7 +169,6 @@ export default function MainDashboard() {
         </div>
       </div>
 
-      {/* Main Content - Faculties Selection */}
       <main id="faculties" className="max-w-7xl mx-auto px-6 py-16 flex-1 w-full">
         <div className="text-center mb-12">
           <h3 className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">Academic Structure</h3>
@@ -204,7 +212,6 @@ export default function MainDashboard() {
         </div>
       </main>
 
-      {/* About Section */}
       <section id="about" className="bg-white py-16 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
@@ -212,6 +219,9 @@ export default function MainDashboard() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">South Eastern University of Sri Lanka</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               Established in 1995, the South Eastern University of Sri Lanka (SEUSL) is a prominent public research university located in Oluvil, Eastern Province. It operates with six full-fledged faculties, fostering academic excellence and professional skill development across diverse disciplines.
+            </p>
+            <p className="text-gray-600 leading-relaxed">
+              This portal serves as the unified Virtual Learning Environment (VLE) where students and academic staff seamlessly manage course enrollments, lecture notes, and assignments.
             </p>
           </div>
           <div className="bg-blue-50 p-8 rounded-2xl border border-blue-100">
@@ -238,7 +248,6 @@ export default function MainDashboard() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="bg-gray-50 py-16 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h3 className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">Get in Touch</h3>
@@ -263,7 +272,6 @@ export default function MainDashboard() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-[#0f172a] text-white py-8 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
           <p>© 2026 South Eastern University of Sri Lanka. All rights reserved.</p>
