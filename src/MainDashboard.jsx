@@ -8,50 +8,50 @@ import appliedImg from "./assets/appliedscience.jpg";
 import artsImg from "./assets/artsculture.jpg";
 import islamicImg from "./assets/islamicarabic.jpg";
 import managementImg from "./assets/managementcommerce.jpg";
-import engineeringImg from "./assets/engineering .jpg"; 
+import engineeringImg from "./assets/engineering .jpg";
 import techImg from "./assets/technology.jpg";
 
 export default function MainDashboard() {
   const navigate = useNavigate();
-  
+
   const [currentSlide, setCurrentSlide] = useState(0);
-  
+
   // අන්තර්ජාල ලින්ක් වෙනුවට ඔයාගේ Faculty පින්තූරම Slideshow එකට දැමීම
   const slides = [
-    { 
-      title: "Welcome to South Eastern University of Sri Lanka", 
+    {
+      title: "Welcome to South Eastern University of Sri Lanka",
       subtitle: "Established in 1995 as a premier center of higher education in Oluvil, Sri Lanka.",
-      bgImage: campusBg 
+      bgImage: campusBg
     },
-    { 
-      title: "Faculty of Applied Sciences", 
+    {
+      title: "Faculty of Applied Sciences",
       subtitle: "Advancing knowledge in Biological, Mathematical, Chemical, and Physical Sciences.",
-      bgImage: appliedImg 
+      bgImage: appliedImg
     },
-    { 
-      title: "Faculty of Management & Commerce", 
+    {
+      title: "Faculty of Management & Commerce",
       subtitle: "Shaping future business leaders with excellence in Management, Finance and Marketing.",
-      bgImage: managementImg 
+      bgImage: managementImg
     },
-    { 
-      title: "Faculty of Technology", 
+    {
+      title: "Faculty of Technology",
       subtitle: "Innovating the future with Bio-systems and Information & Communication Technology.",
-      bgImage: techImg 
+      bgImage: techImg
     },
-    { 
-      title: "Faculty of Engineering", 
+    {
+      title: "Faculty of Engineering",
       subtitle: "Engineering solutions for tomorrow in Civil, Mechanical, Electrical and Computer Science.",
-      bgImage: engineeringImg 
+      bgImage: engineeringImg
     },
-    { 
-      title: "Faculty of Arts & Culture", 
+    {
+      title: "Faculty of Arts & Culture",
       subtitle: "Exploring Social Sciences, Languages, Geography, and Humanities.",
-      bgImage: artsImg 
+      bgImage: artsImg
     },
-    { 
-      title: "Faculty of Islamic Studies & Arabic Language", 
+    {
+      title: "Faculty of Islamic Studies & Arabic Language",
       subtitle: "A unique center for Arabic Language and Islamic jurisprudence.",
-      bgImage: islamicImg 
+      bgImage: islamicImg
     }
   ];
 
@@ -86,13 +86,13 @@ export default function MainDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans flex flex-col justify-between">
-      
+
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          
+
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 flex items-center justify-center overflow-hidden">
-               <img src={seuslLogo} alt="SEUSL Logo" className="w-full h-full object-contain" />
+              <img src={seuslLogo} alt="SEUSL Logo" className="w-full h-full object-contain" />
             </div>
             <div>
               <h1 className="font-bold text-gray-900 text-xs md:text-sm leading-tight">SOUTH EASTERN UNIVERSITY OF SRI LANKA</h1>
@@ -104,12 +104,18 @@ export default function MainDashboard() {
             <a href="#faculties" className="text-sm font-medium text-gray-700 hover:text-blue-600 hidden md:block">Faculties</a>
             <a href="#about" className="text-sm font-medium text-gray-700 hover:text-blue-600 hidden md:block">About</a>
             <a href="#contact" className="text-sm font-medium text-gray-700 hover:text-blue-600 hidden md:block">Contact</a>
-            
+
             <div className="flex items-center gap-3 border-l border-gray-200 pl-6">
               <div className="w-9 h-9 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 font-bold text-sm">
-                <User size={18} />
+                <div
+                  onClick={() => navigate('/profile')}
+                  className="w-9 h-9 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 font-bold text-sm cursor-pointer hover:bg-blue-200 transition-colors shadow-sm"
+                  title="View My Profile"
+                >
+                  <User size={18} />
+                </div>
               </div>
-              <button 
+              <button
                 onClick={handleLogout}
                 className="flex items-center gap-1 text-red-500 hover:text-red-700 text-sm font-medium transition-colors"
                 title="Logout"
@@ -124,15 +130,15 @@ export default function MainDashboard() {
 
       <div className="relative h-[480px] bg-slate-900 flex items-center justify-center overflow-hidden text-center">
         {slides.map((slide, index) => (
-          <img 
+          <img
             key={index}
-            src={slide.bgImage} 
-            alt="Campus Slide" 
+            src={slide.bgImage}
+            alt="Campus Slide"
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-0 ${index === currentSlide ? 'opacity-85' : 'opacity-0'}`}
           />
         ))}
         <div className="absolute inset-0 bg-blue-950/30 z-10"></div>
-        
+
         <div className="relative z-20 max-w-3xl px-6 text-white">
           <span className="bg-blue-600 text-xs uppercase tracking-widest px-3 py-1 rounded-full font-semibold mb-4 inline-block shadow-md">
             SEUSL Official Portal • Est. 1995
@@ -143,8 +149,8 @@ export default function MainDashboard() {
           <p className="text-base md:text-lg text-gray-100 mb-8 drop-shadow-md">
             {slides[currentSlide].subtitle}
           </p>
-          <a 
-            href="#faculties" 
+          <a
+            href="#faculties"
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-xl shadow-lg transition-all inline-flex items-center gap-2"
           >
             Explore Faculties <ChevronRight size={18} />
@@ -160,9 +166,9 @@ export default function MainDashboard() {
 
         <div className="absolute bottom-4 z-30 flex gap-2">
           {slides.map((_, i) => (
-            <button 
-              key={i} 
-              onClick={() => setCurrentSlide(i)} 
+            <button
+              key={i}
+              onClick={() => setCurrentSlide(i)}
               className={`w-3 h-3 rounded-full transition-all ${i === currentSlide ? 'bg-blue-500 w-6' : 'bg-white/60'}`}
             />
           ))}
@@ -178,17 +184,17 @@ export default function MainDashboard() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {faculties.map((fac) => (
-            <div 
+            <div
               key={fac.id}
               onClick={() => handleFacultyClick(fac.id)}
               className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all cursor-pointer group overflow-hidden flex flex-col justify-between"
             >
               <div>
                 <div className="h-52 w-full overflow-hidden relative bg-gray-100">
-                  <img 
-                    src={fac.image} 
-                    alt={fac.name} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  <img
+                    src={fac.image}
+                    alt={fac.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                   <h4 className="absolute bottom-3 left-4 right-4 text-base md:text-lg font-bold text-white drop-shadow-md">
@@ -271,6 +277,7 @@ export default function MainDashboard() {
           </div>
         </div>
       </section>
+
 
       <footer className="bg-[#0f172a] text-white py-8 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
