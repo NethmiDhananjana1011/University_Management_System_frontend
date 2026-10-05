@@ -8,6 +8,7 @@ import AcademicResults from './AcademicResults';
 import seuslLogo from './assets/seusl-logo.png';
 import campusBg from "./assets/campusbg.jpg";
 import MainDashboard from './MainDashboard';
+import FacultyPage from './FacultyPage';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -161,6 +162,7 @@ export default function App() {
       <Route path="/lecturer" element={<LecturerDashboard />} />
       <Route path="/student" element={<StudentDashboard />} />
       <Route path="/student/results" element={<AcademicResults />} />
+      <Route path="/faculty/:facultyId" element={<FacultyPage />} />
     </Routes>
   );
 }
