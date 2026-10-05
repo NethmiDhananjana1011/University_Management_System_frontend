@@ -9,6 +9,7 @@ import campusBg from "./assets/campusbg.jpg";
 import MainDashboard from './MainDashboard';
 import FacultyPage from './FacultyPage';
 import SubjectPage from './SubjectPage';
+import newLoginBg from "./assets/new-login-bg.jpg";
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -17,39 +18,50 @@ function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      // API call (Back-end)
-      const response = await fetch('http://127.0.0.1:8000/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-      const data = await response.json();
-
-      if (response.ok) {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-
-        if (data.user.role === 'admin') navigate('/admin');
-        else navigate('/dashboard');
-      } else {
-        alert(data.message || 'Invalid email or password.');
-      }
-    } catch (error) {
-      console.log('API Offline. Simulating role detection from email...');
-      const emailLower = email.toLowerCase();
-
-      // Local Testing සඳහා 
+    
+    const emailLower = email.toLowerCase();
+    
+    // --- 1. UI Testing සඳහා පමණක් දාපු කෙටි මාර්ගය (Bypass API) ---
+    if (emailLower === 'admin@seu.ac.lk' || emailLower === 'lec@seu.ac.lk' || emailLower === 'student@seu.ac.lk') {
+      
       if (emailLower.includes('admin')) {
         localStorage.setItem('user', JSON.stringify({ email: emailLower, role: 'admin' }));
         navigate('/admin');
-      } else if (emailLower.includes('lec') || emailLower.includes('staff')) {
+      } else if (emailLower.includes('lec')) {
         localStorage.setItem('user', JSON.stringify({ email: emailLower, role: 'lecturer' }));
         navigate('/dashboard');
       } else {
         localStorage.setItem('user', JSON.stringify({ email: emailLower, role: 'student' }));
         navigate('/dashboard');
       }
+      return; // මෙතනින් නවතිනවා, ඇත්තම Database එකට යන්නේ නෑ
+    }
+
+    // --- 2. ඇත්තම Database එකෙන් බලන කොටස (Real API) ---
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        
+        if (data.user.role === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/dashboard');
+        }
+      } else {
+        alert(data.message || 'Invalid email or password.');
+      }
+    } catch (error) {
+      console.log('API Error:', error);
+      alert('Unable to connect to the server.');
     }
   };
 
@@ -57,21 +69,20 @@ function LoginPage() {
     <div className="flex h-screen w-full font-sans bg-white">
 
       {/* SEUSL Campus Image Section */}
-      <div className="hidden lg:flex w-1/2 relative items-center justify-center overflow-hidden p-12">
+      <div className="hidden lg:flex w-1/2 relative items-center justify-center overflow-hidden p-12 bg-black">
         {/* පසුබිම් පින්තූරය */}
         <img
-          src={campusBg}
+          src={newLoginBg} // ඔයා අලුතින් දාපු පින්තූරයේ නම මෙතනට දෙන්න
           alt="SEUSL Campus"
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
 
-        {/* පින්තූරය මත සැහැල්ලු අඳුරු තට්ටුවක් */}
-        <div className="absolute inset-0 bg-blue-950/50 backdrop-blur-[2px] z-10"></div>
+        {/* Blur එක සම්පූර්ණයෙන්ම අයින් කරලා, පින්තූරය පැහැදිලිව පේන්න අඳුරු තට්ටුව ගොඩක් අඩු කලാ */}
+        <div className="absolute inset-0 bg-black/20 z-10"></div>
 
         {/* අන්තර්ගතය (Logo, Names, Welcome Text) */}
         <div className="relative z-20 w-full text-white">
 
-          {/* ලෝගෝ එක සහ භාෂා තුනෙන් නම */}
           <div className="flex items-center gap-5 mb-12">
             <div className="bg-white p-2 rounded-full shadow-xl w-20 h-20 flex items-center justify-center overflow-hidden shrink-0 border-2 border-white/80">
               <img src={seuslLogo} alt="SEUSL Logo" className="w-full h-full object-contain" />
@@ -90,7 +101,6 @@ function LoginPage() {
             </div>
           </div>
 
-          {/* Welcome Box */}
           <div className="bg-black/40 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-2xl">
             <h1 className="text-4xl font-bold text-white mb-2">Welcome to</h1>
             <h2 className="text-3xl font-bold mb-4 text-blue-300 drop-shadow-sm">SEUSL PORTAL</h2>

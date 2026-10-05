@@ -128,17 +128,19 @@ export default function MainDashboard() {
         </div>
       </header>
 
-      <div className="relative h-[480px] bg-slate-900 flex items-center justify-center overflow-hidden text-center">
+      <div className="relative h-[480px] bg-black flex items-center justify-center overflow-hidden text-center">
         {slides.map((slide, index) => (
-          <img
+          <img 
             key={index}
-            src={slide.bgImage}
-            alt="Campus Slide"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-0 ${index === currentSlide ? 'opacity-85' : 'opacity-0'}`}
+            src={slide.bgImage} 
+            alt="Campus Slide" 
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-0 ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
           />
         ))}
-        <div className="absolute inset-0 bg-blue-950/30 z-10"></div>
-
+        
+        {/* පින්තූර උපරිම පැහැදිලිව පේන්න අඳුරු තට්ටුව ඉතාමත් තුනී කර ඇත */}
+        <div className="absolute inset-0 bg-black/20 z-10"></div>
+        
         <div className="relative z-20 max-w-3xl px-6 text-white">
           <span className="bg-blue-600 text-xs uppercase tracking-widest px-3 py-1 rounded-full font-semibold mb-4 inline-block shadow-md">
             SEUSL Official Portal • Est. 1995
@@ -149,8 +151,8 @@ export default function MainDashboard() {
           <p className="text-base md:text-lg text-gray-100 mb-8 drop-shadow-md">
             {slides[currentSlide].subtitle}
           </p>
-          <a
-            href="#faculties"
+          <a 
+            href="#faculties" 
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-xl shadow-lg transition-all inline-flex items-center gap-2"
           >
             Explore Faculties <ChevronRight size={18} />
@@ -166,9 +168,9 @@ export default function MainDashboard() {
 
         <div className="absolute bottom-4 z-30 flex gap-2">
           {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentSlide(i)}
+            <button 
+              key={i} 
+              onClick={() => setCurrentSlide(i)} 
               className={`w-3 h-3 rounded-full transition-all ${i === currentSlide ? 'bg-blue-500 w-6' : 'bg-white/60'}`}
             />
           ))}
